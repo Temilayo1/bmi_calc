@@ -11,10 +11,8 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff0a0d22),
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Text('BMI CALCLULATOR'),
-        ),
+        centerTitle: true,
+        title: Text('BMI CALCLULATOR'),
         backgroundColor: Color(0xff0A0D22),
         elevation: 40,
         leading: Padding(
@@ -26,6 +24,7 @@ class ResultScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -35,13 +34,13 @@ class ResultScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 25),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       'Your Result',
                       style: TextStyle(
                           letterSpacing: 2,
                           color: Colors.white,
-                          fontSize: 40,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -49,10 +48,10 @@ class ResultScreen extends StatelessWidget {
                     height: 35,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
-                      height: 500,
-                      width: 390,
+                      height: MediaQuery.of(context).size.height / 100 * 60,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: Color(0xff1D1F33),
                         borderRadius: BorderRadius.circular(5),
@@ -68,7 +67,7 @@ class ResultScreen extends StatelessWidget {
                             style: TextStyle(
                                 letterSpacing: 1,
                                 color: Color(0xff22E67B),
-                                fontSize: 23,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                           SizedBox(
@@ -79,8 +78,11 @@ class ResultScreen extends StatelessWidget {
                             style: TextStyle(
                                 letterSpacing: 5,
                                 color: Colors.white,
-                                fontSize: 90,
+                                fontSize: 80,
                                 fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           Text(
                             'Normal BMI Range:',
@@ -91,7 +93,7 @@ class ResultScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w400),
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 5,
                           ),
                           Text(
                             '18,5 - 25 kg/m2',
@@ -116,7 +118,7 @@ class ResultScreen extends StatelessWidget {
                             height: 35,
                           ),
                           SizedBox(
-                            height: 75,
+                            height: 50,
                             width: 270,
                             child: RaisedButton(
                               onPressed: () {},
@@ -142,19 +144,19 @@ class ResultScreen extends StatelessWidget {
             SizedBox(
               height: 68,
             ),
-            DefualtButton(
-              text: "RE-CALCULATE YOUR BMI",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => BmiCalculator(),
-                  ),
-                );
-              },
-            ),
           ],
         ),
+      ),
+      bottomNavigationBar: DefualtButton(
+        text: "RE-CALCULATE YOUR BMI",
+        press: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => BmiCalculator(),
+            ),
+          );
+        },
       ),
     );
   }
